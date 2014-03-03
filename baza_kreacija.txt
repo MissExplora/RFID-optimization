@@ -1,0 +1,47 @@
+CREATE TABLE tagovi(
+id_tag TEXT PRIMARY KEY NOT NULL,
+vrsta_tag INTEGER CHECK(vrsta_tag IN(1,2)) NOT NULL,
+vrijeme_poc_t INTEGER NOT NULL,
+vrijeme_zadnje_t INTEGER,
+aktivnost_t INTEGER CHECK(aktivnost_t IN(0,1))
+);
+
+
+CREATE TABLE pinkie(
+id_pinkie TEXT PRIMARY KEY NOT NULL,
+ime_blagajne TEXT NOT NULL,
+p_vrijeme_poc INTEGER NOT NULL,
+p_vrijeme_zadnje INTEGER,
+kosarice INTEGER DEFAULT 0,
+radi INTEGER CHECK(radi IN(0,1))
+);
+
+
+CREATE TABLE poruka(
+id_pinkie TEXT NOT NULL,
+id_tag TEXT NOT NULL,
+vrijeme_por INTEGER NOT NULL,
+aktivnost INTEGER CHECK(aktivnost IN(0,1)) NOT NULL,
+FOREIGN KEY(id_pinkie) REFERENCES pinkie(id_pinkie),
+FOREIGN KEY(id_tag) REFERENCES tagovi(id_tag)
+);
+
+
+
+CREATE TRIGGER update_tagova AFTER INSERT ON poruka
+BEGIN
+	UPDATE tagovi SET aktivnost_t=new.aktivnost WHERE id_tag=new.id_tag;
+	UPDATE tagovi SET vrijeme_zadnje_t=new.vrijeme_por WHERE id_tag=new.id_tag;
+	UPDATE pinkie SET p_vrijeme_zadnje=new.vrijeme_por WHERE id_pinkie=new.id_pinkie;
+	UPDATE pinkie SET kosarice=kosarice+1 WHERE id_pinkie=new.id_pinkie AND new.aktivnost=0 AND (SELECT vrsta_tag FROM tagovi WHERE id_tag=new.id_tag)=1;
+END;
+
+
+INSERT INTO pinkie VALUES("1", "Blagajna1", 1380171600, NULL, 0, 1);
+
+INSERT INTO tagovi VALUES("D9", 1, 1380171600, NULL, 0);
+INSERT INTO tagovi VALUES("EB", 1, 1380171600, NULL, 0);
+INSERT INTO tagovi VALUES("99", 1, 1380171600, NULL, 0);
+INSERT INTO tagovi VALUES("0F", 2, 1380171600, NULL, 0);
+INSERT INTO tagovi VALUES("BD", 2, 1380171600, NULL, 0);
+INSERT INTO tagovi VALUES("90", 2, 1380171600, NULL, 0);

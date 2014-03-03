@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Agrokor Košarice</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Bootstrap -->
+<link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="/css/site.css" rel="stylesheet" media="screen">
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Agrokor Košarice</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/index.html">Home</a></li>
+                <li><a href="/statistika1.html">1. Statistika</a></li>
+                <li><a href="/statistika2.html">2. Statistika</a></li>
+                <li><a href="/statistika3.html">3. Statistika</a></li>
+                <li><a href="/kosarice.html">Košarice</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container" style="margin-top: 65px;">
+    <h1>Aktivne blagajne</h1>
+
+    <table class="table pinkies"></table>
+</div>
+
+<table class="template">
+    <tr class="template pinky">
+        <td class="var_blagajna" style="width: 20%;">naziv blagajne</td>
+        <td class="count" style="padding-top: 20px;">
+            <div class="progress">
+                <div class="progress-bar var_count_progress" style="width: 70%">
+                    <span class="var_count"></span>
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+
+<script src="//code.jquery.com/jquery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/index.js"></script>
+<script >function foobar() { setTimeout(function() { location.reload() }, 60000); }; foobar();</script>
+</body>
+</html>
+
